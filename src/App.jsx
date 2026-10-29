@@ -1,76 +1,52 @@
 import { useState } from 'react'
+import PersonalInfo from './components/PersonalInfo'
+import Education from './components/Education'
+import WorkExperience from './components/WorkExperience'
+import ResumePreview from './components/ResumePreview'
 import './App.css'
 
-function CustomInput({ label, placeholder, inputType, name}) {
-  const [inputText, setInputText] = useState('');
 
-  function handleInputChange(e) {
-    setInputText(e.target.value);
-  }
-  return (
-    <label>
-      {label}
-      <input placeholder={placeholder} type={inputType} name={name}
-        onChange={handleInputChange} value={inputText}
-      ></input>
-    </label>
-  )
-}
-
-
-
-
-function PersonalInfo() {
-  return (
-    <div className="inputForm">
-      <h2>Personal information</h2>
-      <hr/>
-      <CustomInput label="Name: " placeholder="Full name" inputType="text" name="personName"/>
-      <CustomInput label="E-mail: " placeholder="john.doe@email.com" inputType="email" name="email"/>
-      <CustomInput label="Telephone number: " placeholder="+420 999 888 777" inputType="tel" name="tel"/>
-    </div>
-    
-  )
-};
-
-function Education() {
-  return (
-    <div className="inputForm">
-      <h2>Formal education</h2>
-      <hr/>
-      <CustomInput label="Name of institution: " placeholder="Institution name" inputType="text" name="institutionName"/>
-      <CustomInput label="Degree studied: " placeholder="Bc. in biochemistry" inputType="text" name="degree"/>
-      <CustomInput label="Started: " placeholder="dd-mm-yyyy" inputType="date" name="studiedFrom"/>
-      <CustomInput label="Finished: " placeholder="dd-mm-yyyy" inputType="date" name="studiedTo"/>
-
-    </div>
-  )
-}
-
-function WorkExperience() {
-  return (
-    <div className="inputForm">
-      <h2>Previous work experience</h2>
-      <hr/>
-      <CustomInput label="Company name: " placeholder="Microsoft Corporation" inputType="text" name="companyName"/>
-      <CustomInput label="Job title: " placeholder="Head chef" inputType="text" name="jobTitle"/>
-      <label>Job description:{" "}
-        <textarea placeholder="Further describe your role, your experience, accomplishments" name="jobDescription"/> 
-      </label>
-      <CustomInput label="Started: " placeholder="dd-mm-yyyy" inputType="date" name="studiedFrom"/>
-      <CustomInput label="Finished: " placeholder="dd-mm-yyyy" inputType="date" name="studiedTo"/>
-    </div>
-
-  )
-}
 
 function App() {
 
+  // Name state and function
+  const [nameState, setNameState] = useState('');
+  function handleNameChange(e) {
+    setNameState(e.target.value)
+  }
+
+  //Email state and function
+  const [emailState, setEmailState] = useState('')
+  function handleEmailChange(e) {
+    setEmailState(e.target.value)
+  }
+
+  //Telephone state and function
+  const [telState, setTelState] = useState('');
+  function handleTelChange(e) {
+    setTelState(e.target.value)
+  }
+
   return (
     <>
-      <PersonalInfo/>
-      <Education/>
-      <WorkExperience/>
+      <main>
+        <div className="formsSide">
+          <PersonalInfo handleNameChange={handleNameChange}
+          handleEmailChange={handleEmailChange}
+          handleTelChange={handleTelChange}
+          />
+          <Education/>
+          <WorkExperience/>
+        </div>
+        <div className="previewSide">
+          <h2>Resume preview</h2>
+          <hr/>
+          <ResumePreview nameValue={nameState}
+          emailValue={emailState}
+          telValue={telState}
+          />
+        </div>
+      </main>
 
     </>
   )
