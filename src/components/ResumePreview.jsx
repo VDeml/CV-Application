@@ -1,6 +1,6 @@
 
 
-export default function ResumePreview({ personalInfo, educations }) {
+export default function ResumePreview({ personalInfo, educations, workExperiences }) {
   return (
     <div className="resumePreview">
       <p>{personalInfo.name}</p>
@@ -12,8 +12,16 @@ export default function ResumePreview({ personalInfo, educations }) {
             <p>{education.degree}</p>
             <p>{education.started}</p>
             <p>{education.finished}</p>
-        </div>
-      )}
+        </div> )}
+        {workExperiences.length > 0 && workExperiences.map((workExperience, index) => 
+        <div className="workExperience" key={index}>
+            <p>{workExperience.company}</p>
+            <p>{workExperience.title}</p>
+            <p>{workExperience.description}</p>
+            <p>{workExperience.started}</p>
+            <p>{workExperience.finished}</p>
+        </div>)}
+
     </div>  
   )
 }   

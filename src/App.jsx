@@ -43,6 +43,33 @@ function App() {
       }
     }));
   }
+
+  const[workExperiences, setWorkExperiences] = useState([createWorkExperienceForm()]);
+
+  function createWorkExperienceForm() {
+    let company;
+    let title;
+    let description;
+    let started;
+    let finished;
+    const id = crypto.randomUUID();
+    return { company, title, description, started, finished, id }
+  }
+
+  function addWorkExperienceForm() {
+    const newWorkExperienceForm = createWorkExperienceForm()
+    setWorkExperiences([...workExperiences, newWorkExperienceForm])
+  }
+
+  function handleWorkExperienceChange(e, id, property) {
+    setWorkExperiences(workExperiences.map(item => {
+      if(item.id === id) {
+        return {...item, [property]: e.target.value}
+      } else {
+        return item;
+      }
+    }))
+  }
   
 
   return (
@@ -59,13 +86,15 @@ function App() {
             
             id={form.id}
             handleEducationChange={handleEducationChange}
-            />
-          )}
-          
-          
+            />)}
           <button onClick={addEducationForm}>+ Add Education</button>
-          <WorkExperience/>
-          <button>+ Add Work Experience</button>
+          
+          {workExperiences.map(form =>
+            <WorkExperience key={form.id}
+            id={form.id}
+            handleWorkExperienceChange={handleWorkExperienceChange}
+            />)}
+          <button onClick={addWorkExperienceForm}>+ Add Work Experience</button>
         </div>
         <div className="previewSide">
           <h2>Resume preview</h2>
@@ -73,6 +102,7 @@ function App() {
           <ResumePreview 
           personalInfo={personalInfo}
           educations={educations}
+          workExperiences={workExperiences}
           />
         </div>
       </main>
