@@ -8,42 +8,71 @@ import './App.css'
 
 
 function App() {
-
   // Name state and function
-  const [nameState, setNameState] = useState('');
-  function handleNameChange(e) {
-    setNameState(e.target.value)
+  const [personalInfo, setPersonalInfo] = useState({
+    name: '', email: '', tel: ''
+  });
+  function handlePersonalInfoChange(e, property) {
+    const newPersonal = {...personalInfo, [property]: e.target.value}
+    setPersonalInfo(newPersonal)
   }
 
-  //Email state and function
-  const [emailState, setEmailState] = useState('')
-  function handleEmailChange(e) {
-    setEmailState(e.target.value)
+
+  const [educations, setEducations] = useState([createEducationForm()]);
+
+  function createEducationForm() {
+    let institution;
+    let degree;
+    let started;
+    let finished;
+    const id = crypto.randomUUID();
+    return { institution, degree, started, finished, id }
   }
 
-  //Telephone state and function
-  const [telState, setTelState] = useState('');
-  function handleTelChange(e) {
-    setTelState(e.target.value)
+  function addEducationForm() {
+    const newEducationForm = createEducationForm()
+    setEducations([...educations, newEducationForm])
   }
+
+  function handleEducationChange(e, id, property) {
+    setEducations(educations.map(item => {
+      if(item.id === id) {
+        return {...item, [property]: e.target.value}
+      } else {
+        return item;
+      }
+    }));
+  }
+  
 
   return (
     <>
       <main>
         <div className="formsSide">
-          <PersonalInfo handleNameChange={handleNameChange}
-          handleEmailChange={handleEmailChange}
-          handleTelChange={handleTelChange}
+          <PersonalInfo
+          handlePersonalInfoChange={handlePersonalInfoChange}
           />
-          <Education/>
+          
+          <h2>newly created educations go here</h2>
+          {educations.map(form => 
+            <Education  key={form.id}
+            
+            id={form.id}
+            handleEducationChange={handleEducationChange}
+            />
+          )}
+          
+          
+          <button onClick={addEducationForm}>+ Add Education</button>
           <WorkExperience/>
+          <button>+ Add Work Experience</button>
         </div>
         <div className="previewSide">
           <h2>Resume preview</h2>
           <hr/>
-          <ResumePreview nameValue={nameState}
-          emailValue={emailState}
-          telValue={telState}
+          <ResumePreview 
+          personalInfo={personalInfo}
+          educations={educations}
           />
         </div>
       </main>
