@@ -1,0 +1,121 @@
+:root {
+  --shadow-color: 0deg 0% 61%;
+  --shadow-elevation-low:
+    0.4px 0.5px 0.7px hsl(var(--shadow-color) / 0.38),
+    0.7px 0.8px 1.2px -1.3px hsl(var(--shadow-color) / 0.36),
+    1.6px 2.1px 2.9px -2.7px hsl(var(--shadow-color) / 0.35);
+  --shadow-elevation-medium:
+    0.4px 0.5px 0.7px hsl(var(--shadow-color) / 0.39),
+    1.3px 1.6px 2.3px -0.9px hsl(var(--shadow-color) / 0.38),
+    3.3px 4.2px 5.9px -1.8px hsl(var(--shadow-color) / 0.37),
+    8.2px 10.3px 14.5px -2.7px hsl(var(--shadow-color) / 0.36);
+    --shadow-elevation-high:
+    0.4px 0.5px 0.7px hsl(var(--shadow-color) / 0.37),
+    2.3px 2.9px 4.1px -0.4px hsl(var(--shadow-color) / 0.36),
+    4.3px 5.4px 7.6px -0.8px hsl(var(--shadow-color) / 0.36),
+    7.2px 9.1px 12.8px -1.1px hsl(var(--shadow-color) / 0.35),
+    11.7px 14.6px 20.6px -1.5px hsl(var(--shadow-color) / 0.35),
+    18.5px 23.1px 32.6px -1.9px hsl(var(--shadow-color) / 0.34),
+    28.3px 35.4px 50px -2.3px hsl(var(--shadow-color) / 0.34),
+    41.8px 52.3px 73.8px -2.7px hsl(var(--shadow-color) / 0.33);
+  --button-add-form-color: rgb(50, 72, 197);
+  --button-remove-form-color: rgb(255, 76, 76);
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(../assets/fonts/Roboto/Roboto-VariableFont_wdth\,wght.ttf);
+}
+
+@font-face {
+    font-family:Playfair Display;
+    src: url(../assets/fonts/PlayfairDisplay/PlayfairDisplay-VariableFont_wght.ttf);
+}
+
+body {
+    height: 100vh;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+h1, h2 {
+  font-family: PlayfairDisplay, 'Times New Roman', Times, serif;
+  font-size: 32px;
+}
+
+p {
+  font-size: 24px;
+}
+
+.resumePreview hr {
+  margin: 2rem 0;
+}
+
+main {
+  padding: 2rem 4rem;
+  display: grid;
+  grid-template-columns: minmax(440px, 0.5fr) 1fr;
+  gap: 2rem;
+}
+
+.formsSide {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem ;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 2px solid rgb(170, 170, 170);
+  border-radius: 15px;
+  padding: 1rem;
+  
+}
+
+.formRemove {
+  background-color: rgb(240, 240, 240);
+  color: var(--button-remove-form-color);
+  border: 1px dashed rgb(211, 211, 211);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formRemove:hover {
+  border-color: var(--button-remove-form-color);
+  background-color: rgb(253, 235, 235);
+}
+
+.addForm {
+  background-color: rgb(240, 240, 240);
+  color: var(--button-add-form-color);
+  border: 1px dashed rgb(211, 211, 211);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addForm:hover {
+  border-color: var(--button-add-form-color);
+  background-color: rgb(221, 235, 253);
+}
+
+.multipleForms {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid rgb(170, 170, 170);
+  border-radius: 15px;
+}
+
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formRow {
+  display: flex;
+  gap: 0.2rem;
+  align-items: flex-end;
+  justify-content: space-between;
+}

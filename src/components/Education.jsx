@@ -1,9 +1,12 @@
 import CustomInput from "./CustomInput"
 
-export default function Education({handleEducationChange, id}) {
+export default function Education({handleEducationChange, removeEducation, id, index }) {
   return (
     <div className="inputForm">
-      <h2>Formal education</h2>
+      <div className="formHeader"> 
+        <h2>Formal education {index+1}</h2>
+        <button className="formRemove" onClick={() => removeEducation(id)}>remove</button>
+      </div> 
       <hr/>
       <CustomInput label="Name of institution: " placeholder="Institution name" inputType="text" name="institutionName" onChange={handleEducationChange} id={id} property="institution"/>
       <CustomInput label="Degree studied: " placeholder="Bc. in biochemistry" inputType="text" name="degree" onChange={handleEducationChange} id={id} property="degree"/>

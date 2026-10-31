@@ -1,0 +1,29 @@
+
+.resumePreview hr {
+    border:1px solid;
+    color: rgb(110, 156, 247);
+}
+.resumePreview {
+    padding: 2rem;
+    margin: 1rem auto;
+    background-color: rgb(240, 240, 240);
+    box-shadow: var(--shadow-elevation-high);
+}
+
+.resumeHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.resumeHeader h3 {
+    font-size: 32px;
+    grid-column: 1 / 3;
+}
+
+.education, .workExperience {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin: 1rem auto;
+}

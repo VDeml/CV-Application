@@ -3,7 +3,7 @@ import PersonalInfo from './components/PersonalInfo'
 import Education from './components/Education'
 import WorkExperience from './components/WorkExperience'
 import ResumePreview from './components/ResumePreview'
-import './App.css'
+import './styles/App.css'
 
 
 
@@ -44,6 +44,12 @@ function App() {
     }));
   }
 
+  function removeEducation(id) {
+    setEducations(educations.filter(item =>
+      item.id !== id
+    ))
+  }
+
   const[workExperiences, setWorkExperiences] = useState([createWorkExperienceForm()]);
 
   function createWorkExperienceForm() {
@@ -70,6 +76,12 @@ function App() {
       }
     }))
   }
+
+  function removeWorkExperience(id) {
+    setWorkExperiences(workExperiences.filter(item =>
+      item.id !== id
+    ))
+  }
   
 
   return (
@@ -79,25 +91,29 @@ function App() {
           <PersonalInfo
           handlePersonalInfoChange={handlePersonalInfoChange}
           />
-          
-          <h2>newly created educations go here</h2>
-          {educations.map(form => 
-            <Education  key={form.id}
-            
-            id={form.id}
-            handleEducationChange={handleEducationChange}
-            />)}
-          <button onClick={addEducationForm}>+ Add Education</button>
-          
-          {workExperiences.map(form =>
-            <WorkExperience key={form.id}
-            id={form.id}
-            handleWorkExperienceChange={handleWorkExperienceChange}
-            />)}
-          <button onClick={addWorkExperienceForm}>+ Add Work Experience</button>
+          <div className="multipleForms">
+            {educations.map((form, index) => 
+              <Education  key={form.id}
+              id={form.id}
+              handleEducationChange={handleEducationChange}
+              removeEducation={removeEducation}
+              index={index}
+              />)}
+            <button className="addForm" onClick={addEducationForm}>+ Add Education</button>
+          </div>
+          <div className="multipleForms">
+            {workExperiences.map((form, index) =>
+              <WorkExperience key={form.id}
+              id={form.id}
+              handleWorkExperienceChange={handleWorkExperienceChange}
+              removeWorkExperience={removeWorkExperience}
+              index={index}
+              />)}
+            <button className="addForm" onClick={addWorkExperienceForm}>+ Add Work Experience</button>
+          </div>
         </div>
         <div className="previewSide">
-          <h2>Resume preview</h2>
+          <h1>Resume preview</h1>
           <hr/>
           <ResumePreview 
           personalInfo={personalInfo}
