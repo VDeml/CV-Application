@@ -21,10 +21,10 @@ function App() {
   const [educations, setEducations] = useState([createEducationForm()]);
 
   function createEducationForm() {
-    let institution;
-    let degree;
-    let started;
-    let finished;
+    let institution = undefined;
+    let degree = undefined;
+    let started = undefined;
+    let finished = undefined;
     const id = crypto.randomUUID();
     return { institution, degree, started, finished, id }
   }
@@ -53,11 +53,11 @@ function App() {
   const[workExperiences, setWorkExperiences] = useState([createWorkExperienceForm()]);
 
   function createWorkExperienceForm() {
-    let company;
-    let title;
-    let description;
-    let started;
-    let finished;
+    let company = undefined;
+    let title = undefined;
+    let description = undefined;
+    let started = undefined;
+    let finished = undefined;
     const id = crypto.randomUUID();
     return { company, title, description, started, finished, id }
   }
